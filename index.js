@@ -1,17 +1,21 @@
-// Discord.js bot
-const Discord = require('discord.js');
-const client = new Discord.Client();
+// Discord.js botconst keepAlive = require("./server")
 
-client.on('ready', () => {
-    client.user.setActivity('Awikwok', {type: 'PLAYING'});
-});
+const dotenv = require('dotenv');
 
-client.on('message', msg => {
-    if (!msg.content.startsWith(process.env.PREFIX) || !msg.guild) return;
-    const command = msg.content.split(' ')[0].substr(process.env.PREFIX.length);
-    const args = msg.content.split(' ').slice(1).join(' ');
-    if (command === 'guide') return msg.channel.send('https://git.io/d.js-heroku');
-    else if (command === 'invite') return msg.channel.send(process.env.INVITE);
-});
+const TOKEN = (process.env.TOKEN);
 
-client.login(process.env.TOKEN);
+const { Client } = require('discord.js-selfbot-v11')
+
+const client = new Client();
+
+client.on('ready', () => { 
+
+  client.user.setActivity("Subscribe!", {type: "STREAMING", url: "https://twitch.tv/SealedSaucer"})
+
+   console.log(`${client.user.username} Successfully Logged in!`)
+
+})
+
+keepAlive()
+
+client.login(TOKEN);
